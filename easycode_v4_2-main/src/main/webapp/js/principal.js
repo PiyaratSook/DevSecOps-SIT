@@ -1,0 +1,10 @@
+$(document).ready(function(){
+   $('.prueba').hover(function(){
+       $(this).toggleClass('prueba-hover');
+   },function(){
+       $(this).toggleClass('prueba-hover');
+   });
+   $('button').click(function(){
+        $('#overlay').fadeIn().delay(3000).fadeOut();
+    });
+});

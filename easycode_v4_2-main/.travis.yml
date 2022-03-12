@@ -1,0 +1,20 @@
+language: java
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "4kGFvZKiP4/aCtRCgwbM7fQux3+RQ2KIDtD3rCwIL/x03jFdput69tltTqOfmqv8Lh7g8M16lMkG3LEj61xr9CVdzW1G7Y4jvKqnk6RUxV3Si81LQylucheSnDjhmyl24onZAXodt4nEsHszojaMRfE5NUj6AorNvMTdjRhYF5cigy5jr/QUC243F1a0v5X7CzWOiYp9pHQykeQgoet2bySidVIQ9+ZgrkpFaM1vH537AAxQNDH5/mxiJuxoluzocLyhFljorut0MvE/kPATf+KIFey05zm6Q/OZrz0z6TPP9GtAkFjFTmXbXSxDhpEsou49l66Y8ilSbN3/LTTnRpbv7wfkSiubmAbfRQis9WhT9P/wVjYYNMiwHr2vlYspqKRguaFz9QAZ+wyky7I6O2NSm0+nQIqFUE31JLo6SZtyCeqtL45TayNqH+6eikqW+TMYdD8g8bZF1V/6gdnwNCiAMVvsuaJ9inD2YAgUu/E5UhiBaTSgpFIyvExGoVq7SbyjOcTCQCk1b3EKhfgGcwH6kgiYGZOCQBhTiCBQaxVjbtLoN6SwAQK3rpnJ7rz58jmcB/D5tC7oAvrk2wopRNWYLbmld72zYAYfsHz2VMyypwgqqpkkhCewzi1MEDw4ImQy4IXaYQCQmdslcMEjOSYTgPi111HzOLQAILh9y00="
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "2018371036/easycode_v4_2"
+      description: "<Your project description here>"
+    notification_email: 2018371036@uteq.edu.mx
+    build_command_prepend: ""
+    build_command: "mvn compile"
+    branch_pattern: coverity_scan
